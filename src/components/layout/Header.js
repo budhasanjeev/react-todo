@@ -1,20 +1,29 @@
-import React from 'react'
+import React from 'react';
+import {Link} from 'react-router-dom';
 
 function Header() {
     return (
-        <header>
-            <h1 style={headerStyle}>Todo List</h1>
+        <header style={headerStyle}>
+            <h1 style={titleStyle}>Todo List</h1>
+            <Link style={linkStyle} to="/">Home</Link> | <Link style={linkStyle} to="/about">About</Link>
         </header>
     )
 }
 
 const headerStyle = {
     textAlign:'center',
-    background: '#111',
+    background: '#333',
     color:'#fff',
-    fontFamily:'futura-bold',
-    textTransform: 'uppercase',
-    textShadow: '2px 2px #f0f0f0'
-
+    padding: '10px'
 }
+
+const titleStyle = {
+    textTransform: 'uppercase',
+}
+
+const linkStyle = {
+    color: '#ffff',
+    textDecoration: 'none'
+}
+
 export default Header;
