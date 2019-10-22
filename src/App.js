@@ -1,35 +1,53 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Todos from './components/Todos';
 
 import './App.css';
 
-function App() {
+class App extends Component {
 
   state = {
     todos: [
       {
         id: 1,
-        title: "Learn React",
-        completed: false
+        title: "What is React JS?",
+        completed: true
       },
       {
         id: 2,
-        title: "Learn Node Js",
-        completed: false
+        title: "Why React JS",
+        completed: true
       },
       {
         id: 3,
-        title: "Learn Mongo DB",
+        title: "React JS Installation",
         completed: false
       }
     ]
   }
-  return (
-    <div className="App">
-      <h1>App</h1>
-      <Todos todos={this.state.todos}/>
-    </div>
-  );
+
+  // Toggle Complete
+  markComplete = (id) => {
+    this.setState({todos: this.state.todos.map(todo => {
+      if(todo.id===id) todo.completed = !todo.completed;
+
+      return todo;
+    })});
+  }
+
+  // remove todo
+  removeTodo = (id) => {
+    this.setState({todos: [...this.state.todos.filter((todo) => todo.id!==id)]})
+  }
+
+  render () {
+    return (
+      <div className="App">
+        <h1>App</h1>
+        <Todos todos={this.state.todos} markComplete={this.markComplete} removeTodo={this.removeTodo} />
+      </div>
+    );
+  }
+ 
 }
 
 export default App;
